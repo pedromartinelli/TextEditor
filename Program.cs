@@ -26,7 +26,21 @@ class Program
         }
     }
 
-    static void Open() { }
+    static void Open()
+    {
+        Console.Clear();
+        Console.WriteLine("Digite o caminho do arquivo a ser aberto");
+        var path = Console.ReadLine();
+
+        using var file = new StreamReader(path);
+        var text = file.ReadToEnd();
+        Console.WriteLine(text);
+
+        Console.WriteLine("");
+        Console.ReadLine();
+
+        Menu();
+    }
 
     static void Edit()
     {
@@ -60,5 +74,4 @@ class Program
         Console.ReadLine();
         Menu();
     }
-
 }
