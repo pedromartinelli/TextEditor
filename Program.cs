@@ -1,6 +1,4 @@
-﻿using Console = System.Console;
-
-namespace TextEditor;
+﻿namespace TextEditor;
 
 class Program
 {
@@ -35,7 +33,7 @@ class Program
         Console.Clear();
         Console.WriteLine("Digite seu texto abaixo (ESC para sair)");
         Console.WriteLine("------------------------");
-        string text = "";
+        var text = "";
 
         while (Console.ReadKey().Key != ConsoleKey.Escape)
         {
@@ -43,7 +41,24 @@ class Program
             text += Environment.NewLine;
 
         }
-        Console.Write(text);
+
+        Save(text);
+    }
+
+    static void Save(string text)
+    {
+        Console.Clear();
+        Console.WriteLine("Em qual caminho deseja salvar o arquivo?");
+        var path = Console.ReadLine();
+
+        using (var file = new StreamWriter(path))
+        {
+            file.Write(text);
+        }
+
+        Console.WriteLine($"Arquivo {path} salvo com sucesso!");
+        Console.ReadLine();
+        Menu();
     }
 
 }
